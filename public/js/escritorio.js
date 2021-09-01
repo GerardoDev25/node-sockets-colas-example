@@ -3,6 +3,7 @@ const btnNew = document.querySelector("button");
 
 const searchParams = new URLSearchParams(window.location.search);
 
+// * check the params to url
 if (!searchParams.has("escritorio")) {
    window.location = "index.html";
    throw new Error("the desktop is required");
