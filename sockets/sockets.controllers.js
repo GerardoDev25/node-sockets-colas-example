@@ -1,20 +1,20 @@
 const TicketControl = require("../models/ticket-control");
 
-const ticketControl = new TicketControl()
+const ticketControl = new TicketControl();
 
 // ? funtion make all in the connection and disconnetion
 const socketsControllers = (socket) => {
    //
 
+   socket.emit('last-ticket', ticketControl.last)
+   
    // * when the client sned a message
-   socket.on("send-message", (payload, callback) => {
-      const id = 123456789;
+   socket.on("next-ticket", (payload, callback) => {
+      const next = ticketControl.next();
 
-      // * send message to client
-      callback(id);
+      callback(next);
 
-      // * send message all other clients connects
-      socket.broadcast.emit("send-message", payload);
+      // todo next ticket
    });
 };
 

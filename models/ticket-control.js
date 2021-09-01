@@ -53,7 +53,7 @@ class TicketControl {
    // ? function that add new ticket
    next() {
       this.last += 1;
-      const ticket = new Ticket(thi.last, null);
+      const ticket = new Ticket(this.last, null);
       this.tickets.push(ticket);
 
       this.saveDB();
