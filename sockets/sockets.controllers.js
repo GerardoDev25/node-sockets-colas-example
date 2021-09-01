@@ -1,3 +1,7 @@
+const TicketControl = require("../models/ticket-control");
+
+const ticketControl = new TicketControl()
+
 // ? funtion make all in the connection and disconnetion
 const socketsControllers = (socket) => {
    //
