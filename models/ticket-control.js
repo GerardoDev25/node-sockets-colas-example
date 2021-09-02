@@ -60,7 +60,7 @@ class TicketControl {
       return "Ticket: " + ticket.number;
    }
 
-   // ? function that attend last ticket
+   // ? function that attend a ticket
    attendTicket(desktop) {
       if (!this.tickets.length) return null;
 
