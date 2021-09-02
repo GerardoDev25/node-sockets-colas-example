@@ -6,8 +6,10 @@ const ticketControl = new TicketControl();
 const socketsControllers = (socket) => {
    //
 
+   // * when a client connect
    socket.emit("last-ticket", ticketControl.last);
    socket.emit("state-current", ticketControl.last4);
+   socket.emit("total-tickets", ticketControl.tickets.length);
 
    // * when the client send a message
    socket.on("next-ticket", (payload, callback) => {
@@ -15,7 +17,7 @@ const socketsControllers = (socket) => {
 
       callback(next);
 
-      // todo next ticket
+      socket.broadcast.emit("total-tickets", ticketControl.tickets.length);
    });
 
    // * event that attend a ticket
@@ -31,6 +33,11 @@ const socketsControllers = (socket) => {
       socket.broadcast.emit(
          "state-current",
          ticketControl.last4
+      );
+      socket.emit("total-tickets", ticketControl.tickets.length);
+      socket.broadcast.emit(
+         "total-tickets",
+         ticketControl.tickets.length
       );
 
       if (!ticket)
